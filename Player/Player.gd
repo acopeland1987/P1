@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var SPEED = 180
+var SPEED = 190
 var GRAVITY = 15
 var JUMP_POWER = 350
 var FLOOR = Vector2(0,-1)
@@ -11,8 +11,10 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("ui_left"):
 		velocity.x = -SPEED
+		$anim.play("left")
 	elif Input.is_action_pressed("ui_right"):
 		velocity.x = SPEED
+		$anim.play("right")
 	else:
 		velocity.x = 0
 	if Input.is_action_just_pressed("ui_jump") and is_on_floor():
