@@ -29,10 +29,8 @@ func control_loop():
 		sprite_node.set_flip_h(false)
 	else:
 		velocity.x = 0
-		
 	if Input.is_action_just_pressed("ui_jump") and is_on_floor():
 		velocity.y = -JUMP_POWER
-	
 	if Input.is_action_just_pressed("ui_dash"):
 		dash()
 			
