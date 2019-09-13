@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/prout jump.png" type="Texture" id=2]
@@ -6,112 +6,47 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 14 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "jumpleft"
-length = 2.0
-step = 0.2
+[sub_resource type="Animation" id=6]
+resource_name = "fall"
+length = 1.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Jumpsprite:flip_h")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
+"times": PoolRealArray( 0.1, 0.4, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5, 0 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("../Jumpsprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "jump"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "jumpright"
-length = 2.0
-step = 0.3
+resource_name = "run"
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Jumpsprite:flip_h")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5 ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "runleft"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Jumpsprite:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "runright"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Jumpsprite:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -134,15 +69,14 @@ position = Vector2( -51, -30 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Jumpsprite")
-playback_speed = 2.0
-anims/jumpleft = SubResource( 4 )
-anims/jumpright = SubResource( 5 )
-anims/runleft = SubResource( 6 )
-anims/runright = SubResource( 7 )
+playback_process_mode = 0
+playback_speed = 2.5
+anims/fall = SubResource( 6 )
+anims/jump = SubResource( 3 )
+anims/run = SubResource( 5 )
 
 [node name="Jumpsprite" type="Sprite" parent="."]
-position = Vector2( 0, -16 )
+position = Vector2( 0, -15 )
 texture = ExtResource( 2 )
 hframes = 6
-frame = 5
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
