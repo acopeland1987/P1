@@ -54,3 +54,7 @@ func dash():
 func _on_Timer_timeout():
 	SPEED = 190
 	dashing = false
+
+
+func _on_powerup_body_entered(body):
+	JUMP_POWER = 450
