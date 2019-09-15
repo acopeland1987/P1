@@ -19,7 +19,7 @@ func _physics_process(delta):
 	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity, FLOOR)
 		
-
+# function to adjust input controls
 func control_loop():
 	if Input.is_action_pressed("ui_left"):
 		velocity.x = -SPEED
@@ -34,12 +34,13 @@ func control_loop():
 	if Input.is_action_just_pressed("ui_dash"):
 		dash()
 			
+# function to adjust movement animations (change elif velocity == 0
 func anim_loop():
 	if is_on_floor():
 		if velocity.x == 0:
 			$anim.current_animation = "run"
-		elif velocity.x != 0:
-			pass
+		else:
+			$anim.current_animation = "run"
 	else:
 		if velocity.y < 0:
 			$anim.current_animation = "jump"
@@ -48,15 +49,20 @@ func anim_loop():
 		else:
 			pass
 
+# next two functions are for dash
 func dash():
 	SPEED *= DASH_POWER
+	if dashing == true:
+		pass
 	dashing = true
 	$Timer.start()
+
 
 func _on_Timer_timeout():
 	SPEED = 190
 	dashing = false
 
+# orange powerup function
 func _on_powerup_body_entered(body):
 	JUMP_POWER = 450
 
