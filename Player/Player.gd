@@ -43,8 +43,10 @@ func anim_loop():
 	else:
 		if velocity.y < 0:
 			$anim.current_animation = "jump"
+		elif velocity.y > 0:
+			$anim.play("fall")
 		else:
-			$anim.current_animation = "fall"
+			pass
 
 func dash():
 	SPEED *= DASH_POWER
@@ -55,6 +57,6 @@ func _on_Timer_timeout():
 	SPEED = 190
 	dashing = false
 
-
 func _on_powerup_body_entered(body):
 	JUMP_POWER = 450
+

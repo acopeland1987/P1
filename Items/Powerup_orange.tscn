@@ -3,12 +3,11 @@
 [ext_resource path="res://Items/Powerup_orange.gd" type="Script" id=1]
 [ext_resource path="res://Items/crystal-qubodup-ccby3-16-orange.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 5.0
 height = 6.0
 
-[sub_resource type="Animation" id=1]
-resource_name = "rotate"
+[sub_resource type="Animation" id=2]
 length = 1.6
 loop = true
 step = 0.2
@@ -34,10 +33,10 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
-anims/rotate = SubResource( 1 )
+anims/rotate = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, 0 )
