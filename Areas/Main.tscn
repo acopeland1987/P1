@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Areas/Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Items/Powerup_orange.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Areas/Buttons/Finish.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Areas/Animations/Death.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Areas/Animations/Win.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1234, 10 )
@@ -14,7 +15,7 @@ extents = Vector2( 1234, 10 )
 script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 945, 225 )
+position = Vector2( 56, 255 )
 
 [node name="Stage" type="TileMap" parent="."]
 scale = Vector2( 0.25, 0.25 )
@@ -33,6 +34,7 @@ position = Vector2( 261, 55 )
 position = Vector2( 1671, 162 )
 
 [node name="OutOfBounds" type="Area2D" parent="."]
+editor/display_folded = true
 position = Vector2( 1671, 162 )
 scale = Vector2( 0.5, 0.5 )
 
@@ -41,7 +43,14 @@ position = Vector2( -2052, 572 )
 shape = SubResource( 1 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 6 )]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="Win" parent="CanvasLayer2" instance=ExtResource( 7 )]
 [connection signal="death" from="Player" to="CanvasLayer" method="_on_Player_death"]
 [connection signal="death" from="Player" to="." method="_on_Player_death"]
 [connection signal="body_entered" from="powerup" to="Player" method="_on_powerup_body_entered"]
+[connection signal="body_entered" from="Finish" to="." method="_on_Finish_body_entered"]
+[connection signal="body_entered" from="Finish" to="CanvasLayer2/Win" method="_on_Finish_body_entered"]
 [connection signal="body_entered" from="OutOfBounds" to="Player" method="_on_OutOfBounds_body_entered"]

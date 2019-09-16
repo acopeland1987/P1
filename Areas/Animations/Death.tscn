@@ -3,7 +3,7 @@
 [ext_resource path="res://Areas/Animations/Death.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/m3x6.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "death"
 length = 4.0
 tracks/0/type = "value"
@@ -31,7 +31,7 @@ tracks/1/keys = {
 "values": [ 0, 0, 19 ]
 }
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 64
 font_data = ExtResource( 2 )
 
@@ -51,7 +51,7 @@ margin_bottom = 143.5
 color = Color( 0, 0, 0, 0 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
-anims/death = SubResource( 2 )
+anims/death = SubResource( 1 )
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
@@ -62,6 +62,6 @@ margin_left = -160.0
 margin_top = -25.5
 margin_right = 160.0
 margin_bottom = 25.5
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Alas, merciful death!"
 percent_visible = 0.0
