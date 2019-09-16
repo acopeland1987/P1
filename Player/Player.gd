@@ -9,6 +9,7 @@ var FLOOR = Vector2(0,-1)
 var sprite_node 
 var dashing = false
 var velocity = Vector2()
+signal death
 
 func _ready():
 	sprite_node = get_node("Jumpsprite")
@@ -66,3 +67,6 @@ func _on_Timer_timeout():
 func _on_powerup_body_entered(body):
 	JUMP_POWER = 450
 
+func _on_OutOfBounds_body_entered(Player):
+	emit_signal("death")
+	print("dead")

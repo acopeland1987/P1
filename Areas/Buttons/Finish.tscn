@@ -55,4 +55,4 @@ shape = SubResource( 2 )
 [node name="anim" type="AnimationPlayer" parent="."]
 playback_speed = 1.8
 anims/flash = SubResource( 3 )
-[connection signal="body_entered" from="." to="." method="_on_End_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Finish_body_entered"]
