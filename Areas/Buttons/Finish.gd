@@ -10,5 +10,5 @@ func _ready():
 	
 
 
-func _on_Finish_body_entered(body):
+func _on_Finish_body_entered(Player):
 	queue_free()

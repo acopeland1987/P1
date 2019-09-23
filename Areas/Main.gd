@@ -1,5 +1,7 @@
 extends Node2D
 
+export (PackedScene) var Sword
+
 func _ready():
 	pass
 	
